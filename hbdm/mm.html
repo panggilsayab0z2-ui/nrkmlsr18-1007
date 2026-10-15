@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLASSIFIED — Birthday 018 🖤</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@700;800&display=swap');
+
+:root {
+  --bg: #0b0b10;
+  --card: #15151f;
+  --card2: #1c1b29;
+  --purple: #a78bfa;
+  --purple2: #7c3aed;
+  --white: #f5f3ff;
+  --muted: #a09bb5;
+  --line: #302b40;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 10%, #542c7a30, transparent 45%),
+    radial-gradient(ellipse at 90% 85%, #272c6430, transparent 40%);
+}
+
+#login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: min(100%, 430px);
+  background: #14131dee;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 25px 100px #0008;
+}
+
+.stamp {
+  display: inline-block;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+  color: var(--purple);
+  border: 1px solid #4a3c68;
+  background: #211a31;
+  border-radius: 20px;
+  padding: 9px 12px;
+}
+
+.lock {
+  font-size: 48px;
+  margin: 25px 0 12px;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.login-card h1 {
+  font-size: clamp(35px, 9vw, 48px);
+  line-height: 1.05;
+  margin: 0 0 15px;
+}
+
+.accent { color: var(--purple); }
+
+p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.field { margin: 18px 0; }
+
+label {
+  display: block;
+  font: 10px 'DM Mono', monospace;
+  color: var(--purple);
+  letter-spacing: 1.5px;
+  margin-bottom: 9px;
+}
+
+input {
+  width: 100%;
+  background: #0c0b12;
+  border: 1px solid var(--line);
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  outline: none;
+}
+
+input:focus { border-color: var(--purple); }
+
+.btn {
+  background: var(--purple2);
+  color: white;
+  border: 1px solid #9a77ef;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: #8b5cf6;
+}
+
+.full { width: 100%; }
+
+.secondary {
+  background: #201b2e;
+  border-color: #44365f;
+  color: #d9ccff;
+}
+
+#error {
+  color: #ff8d9d;
+  font-size: 12px;
+  min-height: 18px;
+}
+
+.login-foot {
+  text-align: center;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+#site { display: none; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 6%;
+  background: #0b0b10ed;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.status {
+  color: #a7efbd;
+  font: 10px 'DM Mono', monospace;
+}
+
+.hero {
+  min-height: 82vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 65px 20px;
+}
+
+.hero-inner { max-width: 760px; }
+
+.eyebrow {
+  color: var(--purple);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-size: clamp(54px, 12vw, 105px);
+  line-height: .98;
+  letter-spacing: -4px;
+  margin: 25px 0;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--purple);
+}
+
+.hero p {
+  max-width: 580px;
+  margin: 0 auto 25px;
+}
+
+.section {
+  max-width: 1050px;
+  margin: auto;
+  padding: 75px 22px;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 35px;
+}
+
+.section h2 {
+  font-size: clamp(32px, 6vw, 49px);
+  margin: 15px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card {
+  background: linear-gradient(145deg, #191824, #111119);
+  border: 1px solid var(--line);
+  padding: 23px;
+  border-radius: 19px;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #74609c;
+}
+
+.emoji { font-size: 30px; }
+
+.card h3 { margin-bottom: 8px; }
+
+.card p { font-size: 13px; }
+
+.small-btn {
+  background: #282039;
+  border: 1px solid #453461;
+  color: #d5c6ff;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-weight: 700;
+}
+
+.timeline {
+  max-width: 650px;
+  margin: auto;
+  border-left: 2px solid #53416e;
+  padding-left: 23px;
+}
+
+.moment {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.moment::before {
+  content: "✦";
+  position: absolute;
+  left: -33px;
+  color: var(--purple);
+  background: var(--bg);
+}
+
+.moment .card { margin: 0; }
+.moment h3 { margin-bottom: 8px; }
+.moment p { font-size: 13px; margin-bottom: 0; }
+
+.feature {
+  background: linear-gradient(140deg, #1c182a, #11111a);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px 22px;
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
+
+.big-emoji {
+  font-size: 90px;
+  margin: 15px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.wish {
+  color: var(--purple);
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  margin-top: 18px;
+}
+
+.envelope {
+  width: 160px;
+  height: 110px;
+  background: #66518b;
+  border-radius: 9px;
+  margin: 25px auto;
+  display: grid;
+  place-items: center;
+  font-size: 45px;
+  cursor: pointer;
+  transition: .3s;
+  box-shadow: 0 15px 45px #0005;
+}
+
+.envelope:hover { transform: rotate(-4deg) scale(1.05); }
+
+.letter {
+  display: none;
+  max-width: 650px;
+  margin: 20px auto;
+  background: #171520;
+  border: 1px solid #55446d;
+  border-radius: 17px;
+  padding: 25px;
+  animation: appear .4s;
+}
+
+.letter.show { display: block; }
+
+.letter p { font-size: 14px; }
+
+.letter h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+}
+
+.quiz {
+  max-width: 550px;
+  margin: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 10px;
+}
+
+.quiz-options button {
+  padding: 14px;
+  background: #211c2e;
+  border: 1px solid #3a304e;
+  border-radius: 11px;
+  text-align: left;
+  color: white;
+}
+
+.quiz-options button:hover { border-color: var(--purple); }
+
+#feedback {
+  color: var(--purple);
+  min-height: 25px;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+#noBtn { position: relative; }
+
+footer {
+  padding: 45px 20px;
+  text-align: center;
+  color: #756d89;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  z-index: 99;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes float {
+  50% { transform: translateY(-9px) rotate(3deg); }
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(700deg); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:700px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero h1 { letter-spacing: -2px; }
+  .section { padding: 55px 18px; }
+  nav { padding: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN RAHASIA -->
+<section id="login">
+  <div class="login-card">
+    <span class="stamp">🔒 CLASSIFIED ACCESS / 018</span>
+    <div class="lock">🗝️</div>
+    <h1>Who goes <span class="accent">there?</span></h1>
+    <p>
+      Ada satu berkas rahasia untuk seseorang yang baru saja
+      naik level ke umur 18. Identitas harus diverifikasi.
+      Jangan bilang siapa-siapa. 🤫
+    </p>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="username">USERNAME</label>
+        <input id="username" placeholder="masukkan username" required>
+      </div>
+
+      <div class="field">
+        <label for="password">PASSWORD</label>
+        <input id="password" type="password"
+               placeholder="masukkan password" required>
+      </div>
+
+      <div id="error" aria-live="polite"></div>
+
+      <button class="btn full" type="submit">
+        UNLOCK THE FILES ↗
+      </button>
+    </form>
+
+    <button class="btn secondary full" type="button"
+            onclick="enterSite()" style="margin-top:10px">
+      QUICK DEMO LOGIN ✨
+    </button>
+
+    <div class="login-foot">
+      FRIENDSHIP FILE · EST. ELEMENTARY SCHOOL
+    </div>
+  </div>
+</section>
+
+<!-- HALAMAN UTAMA -->
+<main id="site">
+
+<nav>
+  <div class="brand">✦ BFF_ARCHIVE / 18.0</div>
+  <div class="status">● ACCESS GRANTED</div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">FILE NO. 018 · TOP SECRET</div>
+
+    <h1>Malmalll<span>it's your day.</span></h1>
+
+    <p>
+      Selamat datang di umur 18, manusia yang sudah bertahan
+      hidup bersamaku sejak zaman SD. Dari bocah-bocah polos
+      sampai sekarang sok dewasa. WKWK. 
+    </p>
+
+    <button class="btn"
+      onclick="goTo('surprises')">
+      OPEN SECRET FILE ↓
+    </button>
+  </div>
+</header>
+
+<section class="section" id="surprises">
+  <div class="section-head">
+    <div class="eyebrow">01 / CONTENTS</div>
+    <h2>Welcome to the dark side.</h2>
+    <p>
+      Berkas penting untuk manusia yang resmi berusia 18 tahun.
+      Silakan pilih dokumen, agen. 
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <div class="emoji">🎂</div>
+      <h3>Birthday Protocol</h3>
+      <p>Aktifkan kue virtual dan kirim wish ke alam semesta.</p>
+      <button class="small-btn" onclick="goTo('cakeSection')">
+        Open file ↗
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="emoji">🕰️</div>
+      <h3>Friendship Archive</h3>
+      <p>Riwayat persahabatan sejak era seragam SD.</p>
+      <button class="small-btn" onclick="goTo('timeline')">
+        Open file ↗
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="emoji">💌</div>
+      <h3>Sealed Letter</h3>
+      <p>Pesan rahasia. Risiko senyum-senyum sendiri.</p>
+      <button class="small-btn" onclick="goTo('letterSection')">
+        Open file ↗
+      </button>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <div class="section-head">
+    <div class="eyebrow">02 / HISTORY LOG</div>
+    <h2>Since the SD era.</h2>
+    <p>Perjalanan panjang dua manusia random.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="moment">
+      <div class="card">
+        <div class="eyebrow">CHAPTER 01</div>
+        <h3>📚 The little kids</h3>
+        <p>
+          Berawal dari zaman SD. Masalah terbesar mungkin PR,
+          jajan kantin, dan duduk sebangku sama siapa.
+          Nggak nyangka kita masih berteman sampai sekarang.
+        </p>
+      </div>
+    </div>
+
+    <div class="moment">
+      <div class="card">
+        <div class="eyebrow">CHAPTER 02</div>
+        <h3>🎧 Growing up together</h3>
+        <p>
+          Makin gede, makin banyak cerita. Ada tawa, drama,
+          hari menyebalkan, dan momen receh yang tetap diingat.
+          Makasih sudah menjadi bagian dari perjalananku.
+        </p>
+      </div>
+    </div>
+
+    <div class="moment">
+      <div class="card">
+        <div class="eyebrow">CHAPTER 03</div>
+        <h3>🖤 Level 18 unlocked</h3>
+        <p>
+          Sekarang kamu 18! Semoga makin berani mengejar impian,
+          makin sayang sama diri sendiri, dan selalu punya
+          alasan buat bahagia.
+        </p>
+      </div>
+    </div>
+
+    <div class="moment">
+      <div class="card">
+        <div class="eyebrow">CHAPTER 04 · TO BE CONTINUED</div>
+        <h3>♾️ Not the end</h3>
+        <p>
+          Semoga nanti kita masih bisa ketawa sambil mengenang
+          masa ini. Kalau sudah tua, kita bongkar aib masa muda.
+          Deal? 😭
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cakeSection">
+  <div class="section-head">
+    <div class="eyebrow">03 / BIRTHDAY PROTOCOL</div>
+    <h2>Make a wish.</h2>
+    <p>Pejamkan mata, pikirkan harapanmu, lalu tekan tombolnya.</p>
+  </div>
+
+  <div class="feature">
+    <span class="big-emoji" id="cake">🎂</span>
+    <h3 id="cakeTitle">Your cake is ready.</h3>
+    <p id="cakeText">Wish dulu. Jangan minta jadi kaya besok pagi.</p>
+
+    <button class="btn" id="wishBtn" onclick="blowCandles()">
+      BLOW THE CANDLES 💨
+    </button>
+
+    <button class="btn secondary" onclick="confetti()">
+      CHAOS MODE 🎉
+    </button>
+
+    <div class="wish" id="wishText"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="eyebrow">04 / BESTIE TEST</div>
+    <h2>Ujian persahabatan.</h2>
+    <p>Tenang, ini bukan ujian sekolah. Salah pun nggak remedial.</p>
+  </div>
+
+  <div class="quiz">
+    <div class="eyebrow" id="qNumber">QUESTION 01 / 03</div>
+    <h3 id="question">Persahabatan kita dimulai sejak kapan?</h3>
+    <div class="quiz-options" id="options"></div>
+    <div id="feedback" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section" id="letterSection">
+  <div class="section-head">
+    <div class="eyebrow">05 / PRIVATE MESSAGE</div>
+    <h2>For your eyes only.</h2>
+    <p>Tekan amplop untuk membuka surat rahasia ini.</p>
+  </div>
+
+  <div class="envelope" onclick="openLetter()" role="button"
+       tabindex="0" aria-label="Buka surat">
+    💌
+  </div>
+
+  <article class="letter" id="letter">
+    <div class="eyebrow">PERSONAL & CONFIDENTIAL</div>
+    <h3>Happy 18th, bestie. 🖤</h3>
+
+    <p>
+      Happy birthday yaa, manusia yang sudah berteman denganku
+      sejak zaman SD sampai sekarang. Kalau dipikir-pikir,
+      lama banget kita kenal. Kita tumbuh dari anak-anak yang
+      masih polos (katanya) sampai sekarang sudah 18 tahun.
+      Agak nggak masuk akal, waktu jalan secepat itu.
+    </p>
+
+    <p>
+      Makasih sudah jadi bagian dari perjalanan hidupku.
+      Mungkin kita nggak selalu ngobrol setiap detik, mungkin
+      ada masa kita sibuk dengan hidup masing-masing, tapi aku
+      tetap bersyukur pernah dan masih punya kamu sebagai teman.
+    </p>
+
+    <p>
+      Di umur yang baru ini, aku harap kamu selalu dikelilingi
+      orang-orang tulus, diberi kesehatan, dilancarkan urusannya,
+      dan punya keberanian buat memilih hal-hal yang bikin kamu
+      bahagia. Jangan terlalu keras sama diri sendiri, ya.
+      Kamu juga pantas mendapatkan hal-hal baik.
+    </p>
+
+    <p>
+      Kamu nggak harus punya semua jawaban cuma karena sekarang
+      umur 18. Kita masih belajar, masih boleh bingung, masih
+      boleh salah, dan masih boleh ketawa karena hal paling
+      receh sedunia.
+    </p>
+
+    <p>
+      Pokoknya, terima kasih sudah hadir sejak era SD.
+      Semoga cerita kita masih panjang. Nanti kalau sudah tua,
+      kita saling bongkar aib masa muda. Itu wajib. 😭🫶
+    </p>
+
+    <p class="wish">
+      With love and a little chaos,<br>
+      BlllaaaA. 🖤
+    </p>
+  </article>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="eyebrow">06 / FINAL CHECKPOINT</div>
+    <h2>One last question.</h2>
+    <p>Jawab dengan jujur. Kami tidak menerima pengacara.</p>
+  </div>
+
+  <div class="feature">
+    <div class="big-emoji">🥹🖤</div>
+    <h3>Siap jadi 18 tahun tapi tetap jadi manusia random favoritku?</h3>
+
+    <button class="btn" onclick="finalYes()">
+      IYALAH JELAS 💅
+    </button>
+
+    <button class="btn secondary" id="noBtn"
+            onmouseenter="runAway()" onclick="runAway()">
+      hmm, nggak 🙄
+    </button>
+
+    <div class="wish" id="finalMsg"></div>
+  </div>
+</section>
+
+<footer>
+  END OF FILE · HAPPY 18TH BIRTHDAY, BESTIE 🖤<br>
+  MADE WITH FRIENDSHIP, CHAOS & ZERO PHOTOS
+</footer>
+
+</main>
+
+<script>
+// ===========================================
+// PENGATURAN WEBSITE — GANTI DI SINI
+// ===========================================
+const SECRET_USERNAME = "mala";
+const SECRET_PASSWORD = "181007";
+const FRIEND_NAME = "bestie";
+
+// ===========================================
+// LOGIN — QUICK DEMO JUGA LANGSUNG BERFUNGSI
+// ===========================================
+function enterSite() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("site").style.display = "block";
+  document.title = "Happy 18th, " + FRIEND_NAME + " 🖤";
+  window.scrollTo(0, 0);
+}
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (
+    username.toLowerCase() === SECRET_USERNAME.toLowerCase() &&
+    password === SECRET_PASSWORD
+  ) {
+    enterSite();
+    confetti();
+  } else {
+    document.getElementById("error").textContent =
+      "Password salah, agen. Coba ingat masa-masa SD kalian 😭";
+  }
+});
+
+// ===========================================
+// NAVIGASI
+// ===========================================
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// ===========================================
+// CONFETTI
+// ===========================================
+function confetti() {
+  const symbols = ["✦", "♥", "✧", "★"];
+  const colors = ["#a78bfa", "#c4b5fd", "#818cf8", "#ffffff"];
+
+  for (let i = 0; i < 65; i++) {
+    const el = document.createElement("span");
+    el.className = "confetti";
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.color = colors[Math.floor(Math.random() * colors.length)];
+    el.style.fontSize = (10 + Math.random() * 16) + "px";
+    el.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5500);
+  }
+}
+
+// ===========================================
+// KUE ULANG TAHUN
+// ===========================================
+let candlesOut = false;
+
+function blowCandles() {
+  if (candlesOut) {
+    document.getElementById("cakeText").textContent =
+      "Wish kamu sedang diproses alam semesta. Tunggu 3–5 hari kerja ✨";
+    return;
+  }
+
+  candlesOut = true;
+  document.getElementById("cake").textContent = "🍰";
+  document.getElementById("cakeTitle").textContent = "WISH SENT SUCCESSFULLY!";
+  document.getElementById("cakeText").textContent =
+    "Semoga harapan baikmu menemukan jalannya. Aamiin. 🖤";
+  document.getElementById("wishBtn").textContent = "WISH SENT ✓";
+  document.getElementById("wishText").textContent =
+    "YOU DESERVE GOOD THINGS. ✨";
+
+  confetti();
+}
+
+// ===========================================
+// SURAT RAHASIA
+// ===========================================
+function openLetter() {
+  document.getElementById("letter").classList.add("show");
+  goTo("letter");
+  confetti();
+}
+
+document.querySelector(".envelope").addEventListener("keydown", function(e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    openLetter();
+  }
+});
+
+// ===========================================
+// KUIS
+// ===========================================
+const questions = [
+  {
+    q: "Persahabatan kita dimulai sejak era apa?",
+    opts: ["Kemarin sore", "Zaman SD 📚", "Kehidupan sebelumnya 👽"],
+    correct: 1,
+    yes: "BETUL! Lore kita sudah panjang banget 😭",
+    no: "SALAH WKWK. Petunjuknya: masa SD!"
+  },
+  {
+    q: "Sekarang kamu resmi masuk level berapa?",
+    opts: ["Level 8", "Level 18 🎂", "Level 80, siap pensiun"],
+    correct: 1,
+    yes: "YUP! LEVEL 18 UNLOCKED 💅",
+    no: "Masa lupa umur sendiri 😭 Jawabannya 18!"
+  },
+  {
+    q: "Apa misi utama di umur yang baru?",
+    opts: [
+      "Bahagia dan sayang diri sendiri 🖤",
+      "Overthinking 24/7",
+      "Kaya dalam dua hari"
+    ],
+    correct: 0,
+    yes: "BENAR. Semoga banyak hal baik menghampirimu 🫶",
+    no: "Jawaban terbaik tetap: bahagia dan sayang diri sendiri."
+  }
+];
+
+let qi = 0;
+let quizLocked = false;
+
+function renderQuiz() {
+  quizLocked = false;
+  const q = questions[qi];
+
+  document.getElementById("qNumber").textContent =
+    "QUESTION 0" + (qi + 1) + " / 0" + questions.length;
+
+  document.getElementById("question").textContent = q.q;
+  document.getElementById("feedback").textContent = "";
+
+  const box = document.getElementById("options");
+  box.innerHTML = "";
+
+  q.opts.forEach((opt, i) => {
+    const b = document.createElement("button");
+    b.textContent = opt;
+    b.onclick = () => answerQuiz(i);
+    box.appendChild(b);
+  });
+}
+
+function answerQuiz(i) {
+  if (quizLocked) return;
+  quizLocked = true;
+
+  const q = questions[qi];
+
+  document.getElementById("feedback").textContent =
+    i === q.correct ? q.yes : q.no;
+
+  if (i === q.correct) confetti();
+
+  document.querySelectorAll("#options button").forEach(b => {
+    b.disabled = true;
+  });
+
+  setTimeout(() => {
+    if (qi < questions.length - 1) {
+      qi++;
+      renderQuiz();
+    } else {
+      document.getElementById("qNumber").textContent = "MISSION COMPLETE";
+      document.getElementById("question").textContent =
+        "Kamu lulus ujian bestie. 🏆";
+      document.getElementById("options").innerHTML = "";
+
+      const retry = document.createElement("button");
+      retry.textContent = "ULANGI QUIZ ↻";
+      retry.onclick = () => {
+        qi = 0;
+        renderQuiz();
+      };
+
+      document.getElementById("options").appendChild(retry);
+      document.getElementById("feedback").textContent =
+        "Nilai akhir: 100% bestie material menurut panitia.";
+    }
+  }, 1100);
+}
+
+renderQuiz();
+
+// ===========================================
+// TOMBOL JAHIL
+// ===========================================
+function runAway() {
+  const b = document.getElementById("noBtn");
+  b.style.left = (Math.random() * 130 - 65) + "px";
+  b.style.top = (Math.random() * 45 - 22) + "px";
+}
+
+function finalYes() {
+  document.getElementById("finalMsg").textContent =
+    "FRIENDSHIP CONTRACT RENEWED ♾️🖤";
+  confetti();
+}
+</script>
+
+</body>
+</html>
